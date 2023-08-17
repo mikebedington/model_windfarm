@@ -10,7 +10,7 @@ all_ds = [nc.Dataset(this_file) for this_file in all_exp]
 
 all_labels = ['No seagrass', 'Seagrass 0.4m XPrat 0.5', 'Seagrass 0.4m', 'Seagrass 1m', 'Seagrass 4m', 'Seagrass 4m no ext', 'Seagrass 4m no ext and coeff 1']
 all_labels = ['No seagrass', 'Test0', 'Test1', 'Test2', 'Test3', 'Test4', 'Test5']
-all_labels = ['No seagrass', 'Test5']
+all_labels = ['No structure', 'Windfarm anchor']
 
 plot_vars = ['u', 'v', 'P', 'taux', 'tke', 'xP']
 plot_vars = ['u', 'v', 'P', 'taux', 'tke', 'xP', 'temp', 'N1_p', 'N3_n', 'P1_c', 'P2_c', 'P3_c', 'P4_c', 'Z4_c', 'Z5_c', 'Z6_c', 'L2_c']

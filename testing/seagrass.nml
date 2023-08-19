@@ -14,5 +14,4 @@
 &canopy
    seagrass_calc = .false.,
    grassfile = 'seagrass.dat',
-   XP_rat = 1.0,
 /

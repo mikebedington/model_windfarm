@@ -254,7 +254,7 @@ instances:
       rR2: 0.0075                                          # fraction of semi-labile DOC available to bacteria (-)
       rR3: 0.0025                                          # fraction of semi-refractory DOC available to bacteria (-)
       frR3: 0.3                                            # fraction of activity respiration converted to semi-refractory DOC (-)
-      rRS6: 0.01                                           # remineralisation of resuspended substrate to DOM (1/d)
+      rRS6: 0.0                                           # remineralisation of resuspended substrate to DOM (1/d)
     initialization:
       c: 15.7                                              # carbon (mg C/m^3)
       n: 0.26                                              # nitrogen (mmol N/m^3)

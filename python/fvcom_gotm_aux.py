@@ -39,7 +39,7 @@ def nc_to_profile_dict(nc_file_str, variable, col_h=None, siglay=None, ll_ind=No
     if ll_ind is None:
         data_raw = nc_file[variable][:]
     else:
-        data_raw = nc_file[varable][ll_ind]
+        data_raw = nc_file[variable][ll_ind]
 
     time_dt = [dt.datetime(td.year, td.month, td.day, td.hour, td.minute, td.second) for td in nc.num2date(nc_file['time'][:],nc_file['time'].units)]
 

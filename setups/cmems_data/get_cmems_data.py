@@ -39,15 +39,6 @@ all_vars = {'phys':{'uo':'cmems_mod_nws_phy-uv_my_7km-3D_P1D-m', 'vo':'cmems_mod
 	'dino':'cmems_mod_nws_bgc-pft_my_7km-3D-dino_P1D-m', 'nano':'cmems_mod_nws_bgc-pft_my_7km-3D-nano_P1D-m',
 	'pico':'cmems_mod_nws_bgc-pft_my_7km-3D-pico_P1D-m'}}
 
-
-
-all_vars = {'bio':{'po4':'cmems_mod_nws_bgc-po4_my_7km-3D_P1D-m', 'phyc':'cmems_mod_nws_bgc-phyc_my_7km-3D_P1D-m',
-    'nppv':'cmems_mod_nws_bgc-pp_my_7km-3D_P1D-m', 'spco2':'cmems_mod_nws_bgc-spco2_my_7km-2D_P1D-m',
-    'ph':'cmems_mod_nws_bgc-ph_my_7km-3D_P1D-m', 'diato':'cmems_mod_nws_bgc-pft_my_7km-3D-diato_P1M-m',
-    'dino':'cmems_mod_nws_bgc-pft_my_7km-3D-dino_P1D-m', 'nano':'cmems_mod_nws_bgc-pft_my_7km-3D-nano_P1D-m',
-    'pico':'cmems_mod_nws_bgc-pft_my_7km-3D-pico_P1D-m'}}
-
-
 data_request_dict = {
     "service_id": service_id,
     "date_min": start_date.strftime('%Y-%m-%d %H:%M:%S'),

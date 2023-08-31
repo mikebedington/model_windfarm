@@ -220,7 +220,13 @@ os.system(f'bash ./{exp_tag}_edit_yaml.sh')
 os.system(f'rm ./{exp_tag}_edit_yaml.sh')
 #######################################################################################################################################################################
 ## Windfarm setup
-
+"""
+# Try with De Borger setup - 238km^2 and 299 turbines, assume 10m diameter monopiles
+no_turbines = 299
+circumference = 32
+farm_area = 238
+acf = (farm_area*(1000**2))/(circumference*no_turbines)
+"""
 area_wind_farm = 1 # in km**2
 no_turbines = 10
 
@@ -262,22 +268,28 @@ af.write_seagrass_dat(deps, coeff, ext, x_Rate, outfile=f'{out_dir}/seagrass.dat
 os.system(f'cp seagrass.nml ./{exp_tag}_input/')
 
 os.system(f'cp fabm.yaml ./{exp_tag}_input/')
-"""
+
+
 # Ersem setup
 # To do Ys_c and Ys_acf need to overwrite a restart file
 # acf is the area_of_site/circumference of object (or equivalently the volume of water column divided by surface area)
-
-# Try with De Borger setup - 238km^2 and 299 turbines, assume 10m diameter monopiles
-no_turbines = 299
-circumference = 32
-farm_area = 238
-acf = (farm_area*(1000**2))/(circumference*no_turbines)
+starting_carbon = 10000
+acf_raw_deps = A/(X*d)
 
 donor_file = 'restart.nc'
-
 donor_nc = nc.Dataset(donor_file, 'r+')
 
-donor_nc.CreateVariable(
+# Need to interpolate acf to depths in model
+z = donor_nc['z'][:]
+acf = np.interp(-np.flipud(np.squeeze(z)), deps, acf_raw_deps)
+c = np.ones(len(z))*starting_carbon
+
+donor_nc['Ys_c'][:] = c[np.newaxis, :, np.newaxis, np.newaxis]
+donor_nc['Ys_acf'][:] = acf[np.newaxis, :, np.newaxis, np.newaxis,]
+
+donor_nc['time'].units = f'seconds since {start_dt.strftime("%Y-%m-%d %H:%M:%S")}'
+
+donor_nc.close()
 
 # Trawling setup
 """

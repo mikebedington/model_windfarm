@@ -120,7 +120,7 @@ surface:
       constant_value: 0.0                    # constant value to use throughout the simulation [fraction; min=0.0; max=1.0; default=0.0]
    sst:                                      # observed surface temperature [Celsius]
       method: file                           # method [constant, file=from file; default=constant]
-      file: first_test_sst.dat                     # path to file with time series [default=]
+      file: sst_file.dat                     # path to file with time series [default=]
    ice:
       model: no_ice                          # model [no_ice=no ice model, simple=freezing temperature, basal_melt=Basal Melt , lebedev=Lebedev (1938), mylake=Saloranta and Andersen (2007), winton=Michael Winton (2000); default=simple]
       H: 0.0                                 # initial ice thickness [m; default=0.0]
@@ -191,7 +191,7 @@ mimic_3d:                                    # effects of horizontal gradients
       dpdx:
          method: file
          constant_value: 0.0
-         file: first_test_uv_avg.dat
+         file: uv_avg_file.dat
          column: 2
          tidal:
             amp_1: 0.0
@@ -201,7 +201,7 @@ mimic_3d:                                    # effects of horizontal gradients
       dpdy:
          method: file
          constant_value: 0.0
-         file: first_test_uv_avg.dat
+         file: uv_avg_file.dat
          column: 3
          tidal:
             amp_1: 0.0
@@ -211,7 +211,7 @@ mimic_3d:                                    # effects of horizontal gradients
       h:
          method: file
          constant_value: 0.0
-         file: first_test_uv_avg.dat
+         file: uv_avg_file.dat
          column: 1
       period_1: 44714.0
       period_2: 43200.0   
@@ -247,7 +247,7 @@ mimic_3d:                                    # effects of horizontal gradients
    zeta:
       method: file
       constant_value: 0.0
-      file: first_test_zeta.dat
+      file: zeta_file.dat
       column: 1
       tidal:
          period_1: 44714.0
@@ -330,6 +330,17 @@ fabm:                                        # Framework for Aquatic Biogeochemi
          constant_value: 0.070                       # value to use throughout the simulation [default=0.0]
          file:                                       # path to file with series of profiles [default=]
          column: 1                                   # index of column to read from [default=1]
+      N3_n:
+         method: file
+         constant_value: 8.0
+         file: no3_file.dat
+         column: 1
+         relax_tau: 864000
+      N1_p:
+         method: file
+         constant_value: 8.0
+         file: po4_file.txt
+         column: 1
 buoyancy:
    NN_ini: 1.00000000E-04                    # initial buoyancy gradient (squared buoyancy frequency) [s^-2; default=0.0]
 equation_of_state:                           # equation of state

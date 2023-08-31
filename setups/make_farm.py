@@ -8,7 +8,7 @@ import fvcom_gotm_aux as fga
 import aux_funcs as af
 
 #######################################################################################################################################################################
-exp_tag = 'first_test'
+exp_tag = 'nutrient_test'
 
 ext_force = 'vel_avg'
 # GOTM setup

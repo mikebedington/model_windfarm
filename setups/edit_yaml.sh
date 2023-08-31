@@ -18,6 +18,8 @@ sed -i "s/.*file: meteo_file.dat.*/      file: ${exp_name}_meteo.dat/" ${base_fi
 sed -i "s/.*file: sst_file.dat.*/      file: ${exp_name}_sst.dat/" ${base_file}
 sed -i "s/.*file: uv_avg_file.dat*/         file: ${exp_name}_uv_avg.dat/" ${base_file}
 sed -i "s/.*file: zeta_file.dat*/      file: ${exp_name}_zeta.dat/" ${base_file}
+sed -i "s/.*file: no3_file.dat*/         file: ${exp_name}_no3.dat/" ${base_file}
+sed -i "s/.*file: po4_file.txt*/         file: ${exp_name}_po4.dat/" ${base_file}
 sed -i "s/.*  start:.*/   start: ${start_t}/" ${base_file}
 sed -i "s/.*  stop:.*/   stop: ${end_t}/" ${base_file}
 sed -i "s/.*latitude:.*/   latitude: ${lat}/" ${base_file}

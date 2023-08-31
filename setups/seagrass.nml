@@ -12,6 +12,6 @@
 !-------------------------------------------------------------------------------
 
 &canopy
-   seagrass_calc = .false.,
+   seagrass_calc = .true.,
    grassfile = 'seagrass.dat',
 /

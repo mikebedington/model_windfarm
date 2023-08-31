@@ -32,14 +32,16 @@ all_vars = {'phys':{'uo':'cmems_mod_nws_phy-uv_my_7km-2D_PT1H-i', 'vo':'cmems_mo
     'thetao':'cmems_mod_nws_phy-t_my_7km-3D_P1D-m', 'so':'cmems_mod_nws_phy-s_my_7km-3D_P1D-m',
     'zos':'cmems_mod_nws_phy-ssh_my_7km-2D_PT1H-i'},
 	'bio':{'attn':'cmems_mod_nws_bgc-kd_my_7km-3D_P1D-m', 'chl':'cmems_mod_nws_bgc-chl_my_7km-3D_P1D-m',
-	'o2':'cmems_mod_nws_bgc-o2_my_7km-3D_P1D-m', 'no3':'cmems_mod_nws_bgc-no3_my_7km-3D_P1D-m',
-	'po4':'cmems_mod_nws_bgc-po4_my_7km-3D_P1D-m', 'phyc':'cmems_mod_nws_bgc-phyc_my_7km-3D_P1D-m',
+	'o2':'cmems_mod_nws_bgc-o2_my_7km-3D_P1M-m', 'no3':'cmems_mod_nws_bgc-no3_my_7km-3D_P1M-m',
+	'po4':'cmems_mod_nws_bgc-po4_my_7km-3D_P1M-m', 'phyc':'cmems_mod_nws_bgc-phyc_my_7km-3D_P1D-m',
 	'nppv':'cmems_mod_nws_bgc-pp_my_7km-3D_P1D-m', 'spco2':'cmems_mod_nws_bgc-spco2_my_7km-2D_P1D-m',
 	'ph':'cmems_mod_nws_bgc-ph_my_7km-3D_P1D-m', 'diato':'cmems_mod_nws_bgc-pft_my_7km-3D-diato_P1M-m',
 	'dino':'cmems_mod_nws_bgc-pft_my_7km-3D-dino_P1D-m', 'nano':'cmems_mod_nws_bgc-pft_my_7km-3D-nano_P1D-m',
 	'pico':'cmems_mod_nws_bgc-pft_my_7km-3D-pico_P1D-m'}}
 
-all_vars = {'phys':{'zos':'cmems_mod_nws_phy-ssh_my_7km-2D_PT1H-i'}}
+all_vars = {'bio':{'chl':'cmems_mod_nws_bgc-chl_my_7km-3D_P1M-m',
+    'o2':'cmems_mod_nws_bgc-o2_my_7km-3D_P1M-m', 'no3':'cmems_mod_nws_bgc-no3_my_7km-3D_P1M-m',
+    'po4':'cmems_mod_nws_bgc-po4_my_7km-3D_P1M-m', 'ph':'cmems_mod_nws_bgc-ph_my_7km-3D_P1M-m'}}
 
 data_request_dict = {
     "service_id": service_id,

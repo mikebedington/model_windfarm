@@ -3,7 +3,7 @@ import cdsapi
 
 c = cdsapi.Client()
 
-years = np.arange(2011,2021)
+years = np.arange(2010,2021)
 
 
 for this_year in years:
@@ -15,6 +15,7 @@ for this_year in years:
 			'variable': [
 				'10m_u_component_of_wind', '10m_v_component_of_wind', '2m_temperature',
 				'mean_top_net_short_wave_radiation_flux_clear_sky', 'total_cloud_cover', 'total_precipitation',
+				'2m_dewpoint_temperature', 'mean_surface_net_short_wave_radiation_flux_clear_sky', 'surface_pressure',
 			],
 			'year': f'{this_year}',
 			'month': [

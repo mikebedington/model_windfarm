@@ -32,7 +32,7 @@ gebco_ll_ind = np.squeeze(np.where(dists == np.min(dists)))
 col_depth = -int(np.floor(gebco_nc['elevation'][subset_lat,:][:,subset_lon][gebco_ll_ind[1],gebco_ll_ind[0]]))
 
 data_basedir = '/home/michael/Projects/Winfarm_carbon/Code/model_windfarm/setups/cmems_data'
-out_dir = f'./{exp_tag}_input'
+out_dir = f'./{exp_tag}'
 if not os.path.exists(out_dir):
     os.makedirs(out_dir)
 
@@ -224,7 +224,7 @@ os.system(f'rm ./{exp_tag}_edit_yaml.sh')
 area_wind_farm = 1 # in km**2
 no_turbines = 10
 
-deps = np.arange(0,-col_depth) # deps by metre
+deps = np.arange(0,col_depth) # deps by metre
 ## Parameters for the surface part of the floating wind farm
 surface_depth = 10
 surface_diameter = 5
@@ -238,7 +238,7 @@ cable_diameter = 0.1
 cable_extension = 0.01
 
 ## Interpolate these to the water column
-bed_lays = deps >= -col_depth -bed_depth 
+bed_lays = deps >= col_depth -bed_depth 
 
 surf_lays = deps <= surface_depth
 mid_lays = np.ones(len(deps), dtype=bool)

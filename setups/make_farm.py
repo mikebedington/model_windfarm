@@ -7,8 +7,17 @@ sys.path.append('../python')
 import fvcom_gotm_aux as fga
 import aux_funcs as af
 
+import fileinput
+
+def replaceAll(file,searchExp,replaceExp):
+    for line in fileinput.input(file, inplace=1):
+        if searchExp in line:
+            line = line.replace(searchExp,replaceExp)
+        sys.stdout.write(line)
+
 #######################################################################################################################################################################
 exp_tag = 'nutrient_test'
+make_restart = False
 
 ext_force = 'vel_avg'
 # GOTM setup
@@ -202,18 +211,14 @@ with open(f'{out_dir}/{exp_tag}_gotm.yaml', 'w') as f:
 start_str = f'{start_dt.strftime("%Y-%m-%d %H:%M:%S")}'
 end_str = f'{end_dt.strftime("%Y-%m-%d %H:%M:%S")}'
 
-with open('edit_yaml.sh', 'r') as fp:
-    data = fp.read()
-    new = data.replace('exp_name=', f'exp_name={exp_tag}')
-    new = new.replace('lon=', f'lon={col_ll[0]}')
-    new = new.replace('lat=', f'lat={col_ll[1]}')
-    new = new.replace('dep=', f'dep={col_depth}')
-    new = new.replace('start_t=', f'start_t="{start_str}"')
-    new = new.replace('end_t=', f'end_t="{end_str}"')
+os.system(f'cp edit_yaml.sh {exp_tag}_edit_yaml.sh')
 
-with open(f'{exp_tag}_edit_yaml.sh', 'w') as fp:
-    fp.write(new)
-
+replaceAll(f'{exp_tag}_edit_yaml.sh', 'exp_name=', f'exp_name={exp_tag}')
+replaceAll(f'{exp_tag}_edit_yaml.sh', 'lon=', f'lon={col_ll[0]}')
+replaceAll(f'{exp_tag}_edit_yaml.sh', 'lat=', f'lat={col_ll[1]}')
+replaceAll(f'{exp_tag}_edit_yaml.sh', 'dep=', f'dep={col_depth}')
+replaceAll(f'{exp_tag}_edit_yaml.sh', 'start_t=', f'start_t="{start_str}"')
+replaceAll(f'{exp_tag}_edit_yaml.sh', 'end_t=', f'end_t="{end_str}"')
 
 import os
 os.system(f'bash ./{exp_tag}_edit_yaml.sh')
@@ -265,32 +270,33 @@ coeff = np.ones(len(deps))*0.63 # Smooth cylinder
 x_Rate = 0.5 * (X * (d/A)) # Area density - X no of cylinders, d - diameter of cylinder, A area for deceleration of flow
 
 af.write_seagrass_dat(deps, coeff, ext, x_Rate, outfile=f'{out_dir}/seagrass.dat', reinterp=None)
-os.system(f'cp seagrass.nml ./{exp_tag}_input/')
+os.system(f'cp seagrass.nml ./{exp_tag}/')
 
-os.system(f'cp fabm.yaml ./{exp_tag}_input/')
+os.system(f'cp fabm.yaml ./{exp_tag}/')
 
+if make_restart:
+	# Ersem setup
+	# To do Ys_c and Ys_acf need to overwrite a restart file
+	# acf is the area_of_site/circumference of object (or equivalently the volume of water column divided by surface area)
+	starting_carbon = 10000
+	acf_raw_deps = A/(X*d)
 
-# Ersem setup
-# To do Ys_c and Ys_acf need to overwrite a restart file
-# acf is the area_of_site/circumference of object (or equivalently the volume of water column divided by surface area)
-starting_carbon = 10000
-acf_raw_deps = A/(X*d)
+	donor_file = 'restart.nc'
+	donor_nc = nc.Dataset(donor_file, 'r+')
 
-donor_file = 'restart.nc'
-donor_nc = nc.Dataset(donor_file, 'r+')
+	# Need to interpolate acf to depths in model
+	z = donor_nc['z'][:]
+	acf = np.interp(-np.flipud(np.squeeze(z)), deps, acf_raw_deps)
+	c = np.ones(len(z))*starting_carbon
 
-# Need to interpolate acf to depths in model
-z = donor_nc['z'][:]
-acf = np.interp(-np.flipud(np.squeeze(z)), deps, acf_raw_deps)
-c = np.ones(len(z))*starting_carbon
+	donor_nc['Ys_c'][:] = c[np.newaxis, :, np.newaxis, np.newaxis]
+	donor_nc['Ys_acf'][:] = acf[np.newaxis, :, np.newaxis, np.newaxis,]
 
-donor_nc['Ys_c'][:] = c[np.newaxis, :, np.newaxis, np.newaxis]
-donor_nc['Ys_acf'][:] = acf[np.newaxis, :, np.newaxis, np.newaxis,]
+	donor_nc['time'].units = f'seconds since {start_dt.strftime("%Y-%m-%d %H:%M:%S")}'
 
-donor_nc['time'].units = f'seconds since {start_dt.strftime("%Y-%m-%d %H:%M:%S")}'
+	donor_nc.close()
 
-donor_nc.close()
+	# Trawling setup
+	"""
 
-# Trawling setup
-"""
-
+	"""

@@ -9,7 +9,7 @@ end_t=
 
 template_file=gotm_template.yaml
 
-base_file=./${exp_name}_input/gotm.yaml
+base_file=./${exp_name}/gotm.yaml
 cp ${template_file} ${base_file}
 
 sed -i "s/.*file: t_prof_file.dat.*/   file: ${exp_name}_thetao.dat/" ${base_file}

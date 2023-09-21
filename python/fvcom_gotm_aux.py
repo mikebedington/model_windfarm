@@ -60,7 +60,7 @@ def reg_nc_to_profile_dict(nc_file_str, variable, ll_ind):
     nc_file = nc.Dataset(nc_file_str)
     data_raw = nc_file[variable][:,:,ll_ind[0],ll_ind[1]]
     valid_deps = ~data_raw.mask[0,:]
-    dep_series = nc_file['depth'][valid_deps]
+    dep_series = -nc_file['depth'][valid_deps]
 
     time_dt = [dt.datetime(td.year, td.month, td.day, td.hour, td.minute, td.second) for td in nc.num2date(nc_file['time'][:],nc_file['time'].units)]
 

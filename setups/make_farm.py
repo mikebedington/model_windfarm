@@ -125,13 +125,14 @@ meteo_time_dt = [dt.datetime(td.year, td.month, td.day, td.hour, td.minute, td.s
 
 T = meteo_nc['t2m'][:, meteo_ll_ind[0], meteo_ll_ind[1]]
 T_dew = meteo_nc['d2m'][:, meteo_ll_ind[0], meteo_ll_ind[1]]
-sp = meteo_nc['sp'][:, meteo_ll_ind[0], meteo_ll_ind[1]]
+#sp = meteo_nc['sp'][:, meteo_ll_ind[0], meteo_ll_ind[1]]
+sp = np.ones(len(T))*1013
 
 Rdry=287.0597 ; Rvap=461.5250 ; a1=611.21 ; a3=17.502 ; a4=32.19 ; T0=273.16
 E=a1*np.exp(a3*(T_dew-T)/(T_dew-a4))
 qsat=(Rdry/Rvap)*E/(sp-((1-Rdry/Rvap)*E))
 
-meteo_data = np.asarray([meteo_nc['u10'][:, meteo_ll_ind[0], meteo_ll_ind[1]], meteo_nc['v10'][:, meteo_ll_ind[0], meteo_ll_ind[1]], sp, T, qsat,
+meteo_data = np.asarray([meteo_nc['u10'][:, meteo_ll_ind[0], meteo_ll_ind[1]], meteo_nc['v10'][:, meteo_ll_ind[0], meteo_ll_ind[1]], sp, T - 273.15, qsat,
                             meteo_nc['tcc'][:, meteo_ll_ind[0], meteo_ll_ind[1]], meteo_nc['tp'][:, meteo_ll_ind[0], meteo_ll_ind[1]],
                             meteo_nc['msnswrfcs'][:, meteo_ll_ind[0], meteo_ll_ind[1]]]).T
 meteo_data = np.around(meteo_data, 4)

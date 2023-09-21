@@ -31,7 +31,7 @@ temperature:                                 # temperature profile used for init
       t_b: 15.0                              # lower layer temperature [Celsius; min=-2.0; max=40.0; default=0.0]
    NN: 2.56000000E-04                        # square of buoyancy frequency [s^-2; min=0.0; default=0.0]
    relax:                                    # relax model temperature to observed/prescribed value
-      tau: 1.00000000E+15                    # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
+      tau: 432000                    # time scale for interior layer [s; min=0.0; default=1.00000000E+15]
 salinity:                                    # salinity profile used for initialization and optionally relaxation [psu]
    method: file                              # method [off, file=from file, constant, two_layer=two layers with linear gradient in between, buoyancy=from temperature and buoyancy frequency; default=off]
    constant_value: 20.0                      # value to use throughout the simulation [psu; min=0.0; default=0.0]
@@ -89,7 +89,7 @@ surface:
       file: meteo_file.dat                   # path to file with time series [default=]
       column: 4                              # index of column to read from [default=1]
    hum:                                      # humidity @ 2 m
-      method: file                           # method [constant, file=from file; default=constant]
+      method: constant                           # method [constant, file=from file; default=constant]
       constant_value: 0.0                    # value to use throughout the simulation [default=0.0]
       file: meteo_file.dat                   # path to file with time series [default=]
       column: 5                              # index of column to read from [default=1]

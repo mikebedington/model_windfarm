@@ -12,5 +12,5 @@ def write_seagrass_dat(deps, coeff, ext, x_rate, outfile='seagrass.dat', reinter
 	with open(outfile, 'w') as f:
 		f.write(f'{n_deps} \n')
 		for i in np.arange(0,n_deps):
-			f.write(f'{deps[i]:0.6f}     {coeff[i]:0.6f}      {ext[i]:0.6f}      {x_rate[i]:0.6f}\n')
+			f.write(f'{deps[i]:0.6f}     {ext[i]:0.6f}      {coeff[i]:0.6f}      {x_rate[i]:0.6f}\n')
 

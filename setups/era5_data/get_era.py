@@ -1,10 +1,16 @@
 import numpy as np
 import cdsapi
+import sys
+import os
+
+lon_min = sys.argv[1]
+lon_max = sys.argv[2]
+lat_min = sys.argv[3]
+lat_max = sys.argv[4]
 
 c = cdsapi.Client()
 
 years = np.arange(2010,2021)
-
 
 for this_year in years:
 	c.retrieve(
@@ -48,8 +54,11 @@ for this_year in years:
 				'21:00', '22:00', '23:00',
 			],
 			'area': [
-				60, 3.5, 59,
-				5,
+				lat_max, lon_min, lat_min,
+				lon_max,
 			],
 		},
 		f'era_data_{this_year}.nc')
+
+os.system('bash ./concat_years.sh')
+

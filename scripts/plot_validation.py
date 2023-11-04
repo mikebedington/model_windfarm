@@ -1,5 +1,6 @@
 import sys
 sys.path.append(r'/home/michael/Code/gotm_tools/ersem')
+from make_var import *
 
 out_file = 'orig_r6_cer_without_ycs.nc'
 bb = gotm_output(out_file, drop_times=365)

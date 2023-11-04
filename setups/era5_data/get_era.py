@@ -8,6 +8,9 @@ lon_max = sys.argv[2]
 lat_min = sys.argv[3]
 lat_max = sys.argv[4]
 
+start_year = sys.argv[5]
+end_year = sys.argv[6]
+
 c = cdsapi.Client()
 
 years = np.arange(2010,2021)

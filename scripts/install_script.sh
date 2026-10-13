@@ -10,22 +10,22 @@ git clone https://github.com/mikebedington/ersem_windfarm.git
 
 echo "Cloning GOTM"
 git clone https://github.com/mikebedington/gotm_windfarm.git
-cd gotm
+cd gotm_windfarm
 
 git submodule update --init --recursive
 #cd ../
 #cd gotm && git checkout v5.3 && git submodule update --init --recursive && cd ..
 cd ../
 
-echo "Cloning model setup"
-git clone https://github.com/mikebedington/model_windfarm.git
+#echo "Cloning model setup"
+#git clone https://github.com/mikebedington/model_windfarm.git
 
 echo "Building GOTM-FABM"
 
 mkdir install
 mkdir build && cd build
 
-cmake ../gotm -DFABM_BASE=../fabm -DFABM_ERSEM_BASE=../ersem -DCMAKE_INSTALL_PREFIX=../install -DGOTM_USE_SEAGRASS=ON
+cmake ../gotm_windfarm -DFABM_BASE=../fabm -DFABM_ERSEM_BASE=../ersem_windfarm -DCMAKE_INSTALL_PREFIX=../install -DGOTM_USE_SEAGRASS=ON
 
 make install -j $CPU
 

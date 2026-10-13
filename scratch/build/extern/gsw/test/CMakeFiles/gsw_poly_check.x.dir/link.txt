@@ -1,0 +1,1 @@
+/usr/bin/f95    -fbacktrace -O3 CMakeFiles/gsw_poly_check.x.dir/gsw_poly_check.f90.o  -o gsw_poly_check.x  ../libgsw.a 

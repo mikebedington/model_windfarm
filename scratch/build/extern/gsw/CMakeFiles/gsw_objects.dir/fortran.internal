@@ -1,0 +1,13 @@
+# The fortran modules provided by this target.
+provides
+ gsw_mod_baltic_data.mod
+ gsw_mod_check_data.mod
+ gsw_mod_error_functions.mod
+ gsw_mod_freezing_poly_coefficients.mod
+ gsw_mod_gibbs_ice_coefficients.mod
+ gsw_mod_kinds.mod
+ gsw_mod_saar_data.mod
+ gsw_mod_sp_coefficients.mod
+ gsw_mod_specvol_coefficients.mod
+ gsw_mod_teos10_constants.mod
+ gsw_mod_toolbox.mod

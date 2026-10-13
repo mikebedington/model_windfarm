@@ -56,7 +56,7 @@ instances:
       iswASFLUX: 1                                         # air-sea CO2 exchange (0: none, 1: Nightingale et al. 2000, 2: Wanninkhof 1992 without chemical enhancement, 3: Wanninkhof 1992 with chemical enhancement, 4: Wanninkhof and McGillis 1999, 5: Wanninkhof 1992 switching to Wanninkhof and McGillis 1999, 6: Wan, default = 6
       iswtalk: 2                                           # alkalinity formulation (1-4: from salinity and temperature, 5: dynamic alkalinity), default = 5
       pHscale: 1                                           # pH scale (1: total, 0: SWS, -1: SWS backward compatible), default = 1
-      iswbioalk: 1                                         # use bioalkalinity (0: off, 1: on), default = 1
+      iswbioalk: 0                                         # use bioalkalinity (0: off, 1: on), default = 1
     initialization:
       c: 2130.0                                            # total dissolved inorganic carbon (mmol C/m^3)
   R1:
@@ -811,6 +811,7 @@ instances:
       minD: 0.0001                                         # minimum depth of zero-concentration isocline (m)
     initialization:
       o: 0.0225                                            # oxygen (mmol/m^2)
+      o_deep: 0.0001
     coupling:
       o_pel: O2/o                                          # pelagic oxygen (mmol/m^3)
   G3:
@@ -860,6 +861,8 @@ instances:
       pdenit: 0.05                                         # fraction of denitrification producing dinitrogen gas (remainder produces ammonium) (-)
       xn2: 1.25                                            # oxygen demand fulfilled by reduction of nitrate to dinitrogen gas (mol O_2/mol N)
       hM3G4: 1.0                                           # Michaelis-Menten constant for nitrate limitation of denitrification (mmol N/m^3)
+    initialization:
+      G4n: 0.0
     coupling:
       K3n: K3/per_layer/n1                                 # benthic nitrate in 1st layer (mmol N/m^2)
       K4n: K4/per_layer/n1                                 # benthic ammonium in 1st layer (mmol N/m^2)
@@ -985,7 +988,8 @@ instances:
     long_name: mms_fauna
     model: ersem/mms_fauna
     parameters:
-      #acf: 575000000.                                     # North Sea area/1000m structure circumference)
+      acf: 30000                                     # North Sea area/1000m structure circumference)
+      decomm: 0
       qnc: 0.0119                                          # nitrogen to carbon ratio (mmol N/mg C)
       qpc: 0.000792                                        # phosphorus to carbon ratio (mmol P/mg C)
       c0: 0.001                                            # background concentration (mg C/m^2), default = 0.0

@@ -1,0 +1,2 @@
+/usr/bin/ar qc libseagrass.a  CMakeFiles/seagrass.dir/seagrass.F90.o
+/usr/bin/ranlib libseagrass.a

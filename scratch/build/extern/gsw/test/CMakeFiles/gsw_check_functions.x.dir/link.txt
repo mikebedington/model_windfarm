@@ -1,0 +1,1 @@
+/usr/bin/f95    -fbacktrace -O3 CMakeFiles/gsw_check_functions.x.dir/gsw_check_functions.f90.o  -o gsw_check_functions.x  ../libgsw.a 
